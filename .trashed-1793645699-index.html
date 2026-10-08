@@ -1,0 +1,81 @@
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    /* Modo leve já na primeira pintura: celulares/tablets com pouca CPU ou memória */
+    (function () {
+      var n = navigator, touch = window.matchMedia && matchMedia("(pointer:coarse)").matches;
+      if (touch && ((n.hardwareConcurrency && n.hardwareConcurrency <= 4) || (n.deviceMemory && n.deviceMemory <= 3)))
+        document.documentElement.classList.add("lite");
+    })();
+  </script>
+  <title>Meu portfólio de sites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="hero">
+    <!-- Canvas em segundo plano para a malha wireframe e efeitos de iluminação -->
+    <canvas id="bgCanvas"></canvas>
+    <div class="light-overlay"></div>
+
+    <h1>Meu Portfólio</h1>
+    <p class="sub">Olá, eu sou o dada. Escolha uma pasta para abrir os sites dessa categoria.</p>
+    
+    <div class="btns">
+      <button class="pill back" id="backBtn" type="button" hidden>&larr; Pastas</button>
+      <a class="pill lime" href="#contato">Fale comigo</a>
+    </div>
+
+    <!-- Carrossel 3D com os Cards -->
+    <div class="stage" id="stage" aria-label="Carrossel de pastas">
+      <!-- Onde os Cards 3D são renderizados -->
+      <div class="ring" id="ring"></div>
+    </div>
+    
+    <div class="hint">Arraste para os lados ou deslize no celular para navegar</div>
+
+    <footer id="contato">
+      <span>Quer um site como esses?</span>
+      <a id="ctEmail" href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a>
+      <a id="ctInsta" href="https://instagram.com/seuusuario" target="_blank" rel="noopener">Instagram</a>
+      <a id="ctWpp" href="https://wa.me/5531900000000" target="_blank" rel="noopener">WhatsApp</a>
+    </footer>
+  </section>
+
+  <!-- Modal de Detalhes do Projeto -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal-card" id="modalCard" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Fechar detalhes">&times;</button>
+      <div class="modal-preview" id="modalPreview">
+        <span class="modal-badge" id="modalBadge">Destaque</span>
+        <h2 id="modalTitle">Nome do Projeto</h2>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc" id="modalDesc">Descrição do projeto...</p>
+        <div class="modal-tags" id="modalTags"></div>
+        <div class="modal-footer">
+          <a class="pill lime modal-btn" id="modalVisitBtn" href="#" target="_blank" rel="noopener">
+            Visitar site
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="dados.js"></script>
+  <script src="editor.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
